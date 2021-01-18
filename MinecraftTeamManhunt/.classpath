@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/sns17003/Desktop/Minecraft/SpigotBuild/spigot-1.16.3.jar" sourcepath="C:/Users/sns17003/Desktop/Minecraft/SpigotBuild/Spigot/Spigot-API">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/sns17003/Desktop/Minecraft/SpigotBuild/Spigot/Spigot-API/src/main/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
