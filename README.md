@@ -15,7 +15,7 @@
   Leave the team you are currently in. If you are not part of a team, then nothing will happen. I am only left to ask why you are trying to leave a team when you have no team...??
 
 ### Color
-  This allows you to specifiy the color of your team. If you are not part of a team, nothing happens. If you are not part of a team and you specify a color and then you create a team, this will **not** use the color you specified. This **only** works when you are in the team. Allowed colors are:
+  This allows you to specify the color of your team. If you are not part of a team, nothing happens. If you are not part of a team and you specify a color and then you create a team, this will **not** use the color you specified. This **only** works when you are in the team. Allowed colors are:
   * BLACK
   * DARK_BLUE
   * DARK_GREEN
