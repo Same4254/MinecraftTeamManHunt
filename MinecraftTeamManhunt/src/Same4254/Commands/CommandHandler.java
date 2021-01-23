@@ -5,8 +5,10 @@ import java.util.HashMap;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
+import Same4254.Commands.Teams.Color;
 import Same4254.Commands.Teams.Create;
 import Same4254.Commands.Teams.Join;
+import Same4254.Commands.Teams.Leave;
 
 /**
  *	The idea of this class is to handle distributing the work of a given command.
@@ -26,7 +28,10 @@ public class CommandHandler {
 		Command[] commandsToInsert = {
 			new Join(), 
 			new Create(),
-			new Follow()
+			new Follow(),
+			new GiveCompass(),
+			new Leave(),
+			new Color()
 		};
 		
 		for(Command c : commandsToInsert)

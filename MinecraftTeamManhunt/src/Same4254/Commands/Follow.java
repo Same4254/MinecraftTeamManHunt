@@ -5,6 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import Same4254.Main;
+
 /**
  *	The idea of this command is to set the tracking location of the player's compass to a target player.
  *	
@@ -29,7 +31,8 @@ public class Follow extends Command {
 			if(p == null)
 				return false;
 			
-			player.setCompassTarget(p.getLocation());
+			Main.followWho.put(player, p);
+			
 			return true;
 		}
 		

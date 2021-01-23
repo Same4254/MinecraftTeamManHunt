@@ -27,6 +27,10 @@ public class Join extends Command {
 			}
 			
 			Team currentTeam = Bukkit.getScoreboardManager().getMainScoreboard().getPlayerTeam(player);
+			if(team.equals(currentTeam)) {
+				return false;
+			}
+			
 			if(currentTeam != null) {
 				if(currentTeam.getPlayers().size() == 1)
 					currentTeam.unregister();

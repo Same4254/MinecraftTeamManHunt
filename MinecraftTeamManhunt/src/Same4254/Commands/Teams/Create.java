@@ -45,8 +45,7 @@ public class Create extends Command {
 				//Execute the join command so that the exact same behavior as /join is followed. No code duplication ;)
 				new Join().execute(sender, "join", new String[] {teamName});
 				
-				//TODO: specify color?
-				team.setPrefix(ChatColor.GREEN + "[" + team.getDisplayName() + "]");
+				team.setPrefix("[" + team.getDisplayName() + "]");
 				
 				team.setAllowFriendlyFire(false);
 				team.setCanSeeFriendlyInvisibles(true);
