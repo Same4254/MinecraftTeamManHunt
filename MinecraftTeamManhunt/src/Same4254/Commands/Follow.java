@@ -9,11 +9,9 @@ import Same4254.Main;
 
 /**
  *	The idea of this command is to set the tracking location of the player's compass to a target player.
+ *	This will simply change what player's position you are subscribing to on the compass update cycle
  *	
  *	Usage: "/follow <player-name>"
- *
- *	TODO: handle different dimensions.
- *	TODO: automatic updates?
  */
 public class Follow extends Command {
 	public Follow() {

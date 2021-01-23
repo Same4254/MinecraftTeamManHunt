@@ -7,6 +7,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 
+/**
+ *	This will give you a compass. You are welcome ;) 
+ *
+ *	Usage: "/compass"
+ */
 public class GiveCompass extends Command {
 	public GiveCompass() {
 		super("compass");
@@ -20,6 +25,7 @@ public class GiveCompass extends Command {
 			
 			ItemStack compass = new ItemStack(Material.COMPASS, 1);
 			
+			//Change the compass to a Lodestone compass. This will make the compass work in the nether
 			CompassMeta meta = (CompassMeta) compass.getItemMeta();
             meta.setLodestone(player.getLocation());
             meta.setLodestoneTracked(false);

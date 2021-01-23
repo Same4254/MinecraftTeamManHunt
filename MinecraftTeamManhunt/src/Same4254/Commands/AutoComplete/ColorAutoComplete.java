@@ -9,11 +9,13 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.util.StringUtil;
 
 public class ColorAutoComplete implements TabCompleter {
+	//List of all of the known color names to be filtered with the given partial text
 	private static ArrayList<String> colorNames;
 	
 	static {
 		colorNames = new ArrayList<>();
 		
+		//The Allowed colors, as specified by ChatColor
 		colorNames.add("BLACK");
 		colorNames.add("DARK_BLUE");
 		colorNames.add("DARK_GREEN");
@@ -30,7 +32,6 @@ public class ColorAutoComplete implements TabCompleter {
 		colorNames.add("LIGHT_PURPLE");
 		colorNames.add("YELLOW");
 		colorNames.add("WHITE");
-		colorNames.add("MAGIC");
 	}
 	
 	@Override

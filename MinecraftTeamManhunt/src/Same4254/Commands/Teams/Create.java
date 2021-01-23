@@ -16,10 +16,8 @@ import Same4254.Main;
  *
  *	Team names cannot contain any spaces!! Any spaces in the name will be removed before being added to the game
  *
- *	TODO: allow spaces in names?
- *	TODO: check if people on the same team cannot pvp
- *	TODO: make it so player names above their heads is of their team color
- *	TODO: allow the user to set the color of the team
+ *	Usage: "/create <team-name>"
+ *
  *	TODO: make pvp configurable?
  */
 public class Create extends Command {

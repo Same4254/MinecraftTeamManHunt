@@ -1,7 +1,5 @@
 package Same4254.Commands.Teams;
 
-import java.util.HashMap;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -9,6 +7,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Team;
 
+/**
+ * This allows you to specify the color of your team. 
+ * If you are not part of a team, nothing happens. 
+ * If you are not part of a team and you specify a color and then you create a team, this will not use the color you specified. 
+ * This only works when you are in the team.
+ * 
+ * Usage: "/color <color>"
+ * 
+ * TODO: can we do better than a large if-else block?
+ */
 public class Color extends Command {
 	public Color() {
 		super("color");
@@ -19,6 +27,7 @@ public class Color extends Command {
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
 			
+			//If not part of a team, or there is no color specified, do nothing
 			Team team = Bukkit.getScoreboardManager().getMainScoreboard().getPlayerTeam(player);
 			if(team == null || args.length == 0) {
 				return false;
@@ -27,7 +36,8 @@ public class Color extends Command {
 			String colorName = args[0];
 			ChatColor color = null;
 
-			if(colorName.equalsIgnoreCase("black")) {
+			//unfortunately the ChatColor class does not have these colors stored in readable format, only in char codes
+			if(colorName.equalsIgnoreCase("BLACK")) {
 				color = ChatColor.BLACK;
 			} else if(colorName.equalsIgnoreCase("DARK_BLUE")) {
 				color = ChatColor.DARK_BLUE;

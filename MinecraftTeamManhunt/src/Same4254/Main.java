@@ -21,8 +21,13 @@ import Same4254.Commands.AutoComplete.ColorAutoComplete;
 import Same4254.Commands.AutoComplete.PlayerNameTabAutoComplete;
 import Same4254.Commands.AutoComplete.TeamTabAutoComplete;
 
+//TODO: what happens when a player disconnects while being tracked??
 public class Main extends JavaPlugin {
+	//Track what player (key) is following who (value)
+	//Hunter to victim key-value pairs essentially
 	public static HashMap<Player, Player> followWho;
+	
+	//Position of every player in the dimensions
 	public static HashMap<Player, HashMap<Environment, Vector>> playerLocations;
 	
 	/**
@@ -57,7 +62,10 @@ public class Main extends JavaPlugin {
 		followWho = new HashMap<>();
 		playerLocations = new HashMap<>();
 		
+		//Schedule a task to run every second. This will update the compasses
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+			//Update every players position into playerLocations
+			//This only updates the location of the dimension they are currently in
 			for(Player p : Bukkit.getOnlinePlayers()) {
 				Location playerLocation = p.getLocation();
 				if(playerLocation.getWorld() == null)
@@ -66,6 +74,7 @@ public class Main extends JavaPlugin {
 				playerLocations.computeIfAbsent(p, key -> new HashMap<>()).put(playerLocation.getWorld().getEnvironment(), playerLocation.toVector());
 			}
 			
+			//Update everyone's compass
 			for(Map.Entry<Player, Player> entry : followWho.entrySet()) {
 				Player hunter = entry.getKey();
 				Player victim = entry.getValue();
@@ -74,13 +83,24 @@ public class Main extends JavaPlugin {
 				if(hunterLocation.getWorld() == null)
 					continue;
 				
+				//find the victim's location in the dimension the hunter is in
 				Vector toPoint = playerLocations.computeIfAbsent(victim, key -> new HashMap<>())
 												.computeIfAbsent(hunter.getWorld().getEnvironment(), key -> hunterLocation.toVector());
 				
+				//Convert the Vector into a Location, which includes dimension information
 				Location l = new Location(hunterLocation.getWorld(), toPoint.getX(), toPoint.getY(), toPoint.getZ());
 				
 				hunter.setCompassTarget(l);
 				
+				/**
+				 * Change the meta data of the lodestone compass. 
+				 * Unfortunately the location to point to is meant to be fixed, and is part of the item's metadata.
+				 * This is unlike the regular compass when can variably point anywhere.
+				 * By changing the metadata, this cause the item to kind of reset.
+				 * This is why the compass seems to "tick" when using it.
+				 * Would like to have a better solution, but the lodestone compass works in the nether.
+				 * I don't think there is anything to be done about this without modding the game.
+				 */
 				PlayerInventory inv = hunter.getInventory();
 				for (int j = 0; j < inv.getSize(); j++) {
                     ItemStack stack = inv.getItem(j);
