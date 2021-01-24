@@ -103,15 +103,15 @@ public class Main extends JavaPlugin {
 				 */
 				PlayerInventory inv = hunter.getInventory();
 				for (int j = 0; j < inv.getSize(); j++) {
-                    ItemStack stack = inv.getItem(j);
-                    if (stack == null) continue;
-                    if (stack.getType() != Material.COMPASS) continue;
+					ItemStack stack = inv.getItem(j);
+					if (stack == null) continue;
+					if (stack.getType() != Material.COMPASS) continue;
 
-                    CompassMeta meta = (CompassMeta) stack.getItemMeta();
-                    meta.setLodestone(l);
-                    meta.setLodestoneTracked(false);
-                    stack.setItemMeta(meta);
-                }
+					CompassMeta meta = (CompassMeta) stack.getItemMeta();
+					meta.setLodestone(l);
+					meta.setLodestoneTracked(false);
+					stack.setItemMeta(meta);
+				}
 			}
 		}, 0L, 1 * 20);
 		
