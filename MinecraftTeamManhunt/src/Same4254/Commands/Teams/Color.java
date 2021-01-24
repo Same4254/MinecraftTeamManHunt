@@ -1,5 +1,7 @@
 package Same4254.Commands.Teams;
 
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -14,8 +16,6 @@ import org.bukkit.scoreboard.Team;
  * This only works when you are in the team.
  * 
  * Usage: "/color <color>"
- * 
- * TODO: can we do better than a large if-else block?
  */
 public class Color extends Command {
 	public Color() {
@@ -34,44 +34,15 @@ public class Color extends Command {
 			}
 			
 			String colorName = args[0];
-			ChatColor color = null;
-
-			//unfortunately the ChatColor class does not have these colors stored in readable format, only in char codes
-			if(colorName.equalsIgnoreCase("BLACK")) {
-				color = ChatColor.BLACK;
-			} else if(colorName.equalsIgnoreCase("DARK_BLUE")) {
-				color = ChatColor.DARK_BLUE;
-			} else if(colorName.equalsIgnoreCase("DARK_GREEN")) {
-				color = ChatColor.DARK_GREEN;
-			} else if(colorName.equalsIgnoreCase("DARK_AQUA")) {
-				color = ChatColor.DARK_AQUA;
-			} else if(colorName.equalsIgnoreCase("DARK_RED")) {
-				color = ChatColor.DARK_RED;
-			} else if(colorName.equalsIgnoreCase("DARK_PURPLE")) {
-				color = ChatColor.DARK_PURPLE;
-			} else if(colorName.equalsIgnoreCase("GOLD")) {
-				color = ChatColor.GOLD;
-			} else if(colorName.equalsIgnoreCase("GRAY")) {
-				color = ChatColor.GRAY;
-			} else if(colorName.equalsIgnoreCase("DARK_GRAY")) {
-				color = ChatColor.DARK_GRAY;
-			} else if(colorName.equalsIgnoreCase("BLUE")) {
-				color = ChatColor.BLUE;
-			} else if(colorName.equalsIgnoreCase("GREEN")) {
-				color = ChatColor.GREEN;
-			} else if(colorName.equalsIgnoreCase("AQUA")) {
-				color = ChatColor.AQUA;
-			} else if(colorName.equalsIgnoreCase("RED")) {
-				color = ChatColor.RED;
-			} else if(colorName.equalsIgnoreCase("LIGHT_PURPLE")) {
-				color = ChatColor.LIGHT_PURPLE;
-			} else if(colorName.equalsIgnoreCase("YELLOW")) {
-				color = ChatColor.YELLOW;
-			} else if(colorName.equalsIgnoreCase("WHITE")) {
-				color = ChatColor.WHITE;
-			}
 			
-			if(color == null)
+			//***Thanks to Mike in the CSE discord for spotting this!!***
+			ChatColor color = Arrays.stream(ChatColor.values())
+									.filter(c -> (c.name().equalsIgnoreCase(colorName) &&
+												  !colorName.equalsIgnoreCase(ChatColor.MAGIC.name())))
+									.findFirst()
+									.orElse(null);
+			
+			if(color == null || !color.isColor())
 				return false;
 			
 			team.setPrefix(color + "[" + team.getDisplayName() + "]");

@@ -1,8 +1,11 @@
 package Same4254.Commands.AutoComplete;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -10,28 +13,11 @@ import org.bukkit.util.StringUtil;
 
 public class ColorAutoComplete implements TabCompleter {
 	//List of all of the known color names to be filtered with the given partial text
-	private static ArrayList<String> colorNames;
+	private static List<String> colorNames;
 	
 	static {
-		colorNames = new ArrayList<>();
-		
-		//The Allowed colors, as specified by ChatColor
-		colorNames.add("BLACK");
-		colorNames.add("DARK_BLUE");
-		colorNames.add("DARK_GREEN");
-		colorNames.add("DARK_AQUA");
-		colorNames.add("DARK_RED");
-		colorNames.add("DARK_PURPLE");
-		colorNames.add("GOLD");
-		colorNames.add("GRAY");
-		colorNames.add("DARK_GRAY");
-		colorNames.add("BLUE");
-		colorNames.add("GREEN");
-		colorNames.add("AQUA");
-		colorNames.add("RED");
-		colorNames.add("LIGHT_PURPLE");
-		colorNames.add("YELLOW");
-		colorNames.add("WHITE");
+		colorNames = Arrays.stream(ChatColor.values()).filter(c -> !c.name().equals("MAGIC") && c.isColor())
+						   .map(color -> color.name() ).collect(Collectors.toList());
 	}
 	
 	@Override
